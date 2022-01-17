@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // // 기존의 프로미스 문법
+        // function findAndSaveUser(Users) {
+        //     Users.findOne({})
+        //         .then((user) => {
+        //             user.name = 'zero';
+        //             return user.save();
+        //         })
+        //         .then((user) => {
+        //             return Users.findOne({ gender: 'm' });
+        //         })
+        //         .then((user) => {
+        //             // 생략
+        //         })
+        //         .catch(err => {
+        //             console.error(err);
+        //         });
+        // }
+
+        // async/await 문법 적용
+
+        async function findAndSaveUser(Users) {
+            try {
+                let user = await Users.findOne({}); // await = 기다리다(resolve될 때까지)
+                user.name = 'zero';
+                user = await user.save(); // 첫번째 콜백
+                user = await Users.findOne({ gender: 'm' }); // 두번째 콜백
+                // 생략 // 세번째 콜백
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // 화살표 함수 적용
+
+        const findAndSaveUser = async (Users) => {
+            try {
+                let user = await Users.findOne({}); // await = 기다리다(resolve될 때까지)
+                user.name = 'zero';
+                user = await user.save(); // 첫번째 콜백
+                user = await Users.findOne({ gender: 'm' }); // 두번째 콜백
+                // 생략 // 세번째 콜백
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        // for문과 async/await 같이 써서 프로미스 실행
+
+        const promise1 = Promise.resolve('성공1');
+        const promise2 = Promise.resolve('성공2');
+        (async () => {
+            for await (promise of [promise1, promis2]) { // for/of 문법: literable 객체를 순회 할수 있음
+                console.log(promise);
+            }
+        })();
+
+
+        // 이 부분 이해 못했음
+
+        async function findAndSaveUser(Users) {
+            // 생략
+        }
+        findAndSaveUser().then(() => { /* 생략 */ });
+        
+        // 또는
+        async function other() {
+            const result = await findAndSaveUser();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const sayNode = function() {
+            console.log('Node');
+        };
+
+        const es = 'ES';
+
+        const newObject = {
+            sayJS() {
+                console.log('JS');
+            },
+            sayNode, // sayNode: sayNode를 sayNode 하나로 간소화
+            [es+6]: 'Fantastic', // 객체 리터럴 내부에서 동적 속성 선언
+        };
+
+        newObject.sayNode();
+        newObject.sayJS();
+        console.log(newObject.ES6);
+    </script>
+</body>
+</html>

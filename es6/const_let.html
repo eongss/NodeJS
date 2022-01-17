@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        if (true) {
+            var x = 3; // var은 함수 스코프 function() {}
+        }
+        console.log(x);
+        
+        if (true) {
+            const y = 3; // const, let은 블록 스코프 {}
+        }
+        console.log(y);
+
+        const a = 0; // const는 값 재할당 불가
+        a = 1;
+
+        let b = 0; // let은 값 재할당 가능
+        b = 1;
+
+        // const로 대부분 변수를 선언하고 변경 가능성이 있는 변수만 let으로 선언하는것이 좋다
+    </script>
+</body>
+</html>

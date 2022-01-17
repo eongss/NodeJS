@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- this scope 범위 확인 -->
+    
+    <script>
+        // 1. 일반적으로 전역객체(window)로 바인딩됩니다. => forEach의 콜백함수가 이 경우이기 때문에 전역객체로 바인딩됩니다.
+        // 2. 메소드 호출 방식의 경우 메소드의 객체로 바인딩됩니다.  => logFriends: function ()의 경우 
+        //    logFriends의 this는 relationship으로 바인딩됩니다. 출처: https://poiemaweb.com/js-this
+
+        // 일반적으로 
+        var relationship = {
+            name: 'a',
+            friends: ['b', 'c', 'd'],
+            logFriends: function () {
+                this.friends.forEach(friend => { // 화살표를 이용해서 선언하면 this가 전역객체(window)랑 바인딩이 안됨 즉, 여기서 this는 relationship임 
+                    console.log(this.name, friend);
+                });
+            },
+        };
+        relationship.logFriends();
+    </script>
+</body>
+</html>

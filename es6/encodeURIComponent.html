@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <script>
+
+        // 한글 주소 인코딩을 위해 encodeURIComponent 사용
+        (async () => {
+            try {
+                const result = await axios.get(`https://www.zerocho.com/api/search/${encodeURIComponent('노드')}`); // 백틱 사용
+                console.log(result);
+                console.log(result.data);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+
+        // https://www.zerocho.com/api/search/%EB%85%B8%EB%93%9C -> 노드 라는 한글이 %EB%85%B8%EB%93%9C로 변환됨
+        
+        // 받는 쪽에서 사용하려면
+        
+        // decodeURIComponent('%EB%85%B8%EB%93%9C');
+    </script>
+    
+</body>
+</html>

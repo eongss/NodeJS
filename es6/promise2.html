@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 콜백을 프로미스로 바꾸기(아직 적용 방법과 원리를 모르겠다)
+
+        // 기존의 콜백
+        function findAndSaveUser(Users) {
+            Users.findOne({}, (err, user) => { // 첫 번째 콜백
+                if (err) {
+                    return console.error(err);
+                }
+                user.name = 'zero';
+                user.save((err) => { // 두 번째 콜백
+                    if (err) {
+                        return console.error(err);
+                    }
+                    Users.findOne({ gender: 'm'}, (err, user) => { // 세 번째 콜백
+                        if (err) {
+                            return console.error(err);
+                        }
+                    });
+                });
+            });
+        }
+
+        // 프로미스
+        function findAndSaveUser(Users) {
+            Users.findOne({})
+                .then((user) => {
+                    user.name = 'zero';
+                    return user.save();
+                })
+                .then((user) => {
+                    return Users.findOne({ gender: 'm' });
+                })
+                .then((user) => {
+                    // 생략
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+
+    </script>
+</body>
+</html>

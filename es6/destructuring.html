@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 구조분해 할당: 객체와 배열의 속성이나 요소를 꺼내서 변수에 담는것 
+
+        // // 이전 버전 코드
+        // var candyMachine = {
+        //     status: {
+        //         name: 'node',
+        //         count: 5,
+        //     },
+        //     getCandy: function() {
+        //         this.status.count--;
+        //         return this.status.count;
+        //     },
+        // };
+        
+        // var getCandy = candyMachine.getCandy;
+        // var count = candyMachine.status.count;
+
+        // 객체에 대한 구조할당
+        const candyMachine = {
+            status: {
+                name: 'node',
+                count: 5,
+            },
+            getCandy() {
+                this.status.count--;
+                return this.status.count;
+            },
+        };
+        // getCandy: getCandy -> getCandy로 간략화
+        const { getCandy, status: { name, count } } = candyMachine; // const {} 안에 담을 변수명을 적어주고 사용할때 그 변수명 호출해서 쓰면됨
+        
+
+        // // 이전 버전 코드
+        // var array = ['nodejs', {}, 10, true];
+        // var node = array[0]; // 'nodejs'
+        // var obj = array[1]; // {}
+        // var bool = array[3]; // true
+
+        //배열에 대한 구조할당
+        const array = ['nodejs', {}, 10, true];
+        const [node, obj, , bool] = array; // const [] 안에 담을 변수명을 적어주고 사용할때 그 변수명 호출해서 쓰면됨
+
+    </script>
+</body>
+</html>
