@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-// readme2 여러번 읽는 프로그램
+// readme2 여러번 읽는 프로그램(비동기)
 
 console.log('시작');
 fs.readFile('./ex/readme2.txt', (err, data) => {
